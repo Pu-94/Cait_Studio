@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAIT工作室导航</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            color: #fff;
+            padding-bottom: 5rem; /* 底部留出空间 */
+        }
+        
+        /* 星空背景样式 */
+        #stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* 头部样式 */
+        .header {
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        
+        /* 按钮容器 - 用于居中排列按钮 */
+        .buttons-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* 按钮之间的间距 */
+        }
+        
+        /* 按钮基础样式 - 统一尺寸 */
+        .nav-button {
+            width: 100%; /* 统一宽度 */
+            height: 60px; /* 统一高度 */
+            padding: 0 1.5rem;
+            background-color: rgba(50, 50, 150, 0.8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(50, 50, 150, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-button:hover {
+            background-color: rgba(80, 80, 200, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(80, 80, 200, 0.8);
+        }
+        
+        /* 返回顶部按钮样式 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(50, 50, 150, 0.9);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(50, 50, 150, 0.8);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0; /* 初始隐藏 */
+            visibility: hidden; /* 初始不可见 */
+            z-index: 100;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: rgba(80, 80, 200, 0.9);
+            transform: scale(1.1);
+        }
+
+        /* 星星闪烁动画 */
+        @keyframes twinkle {
+            from { opacity: 0.2; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div id="stars-container"></div>
+
+    <div class="header">
+        <div class="logo">Florr.io数据</div>
+        <p>探索数字宇宙的无限可能</p>
+        <p>在星空背景下探索我们的数字宇宙</p>
+        <p>获取ID:             localStorage.cp6_player_id</p>
+        <p>异地登陆:  localStorage.cp6_player_id = ''</p>
+        <p>Cait             1P: 435a3b7c-33d1-4d72-a7c3-e2add2379a81</p>
+        <p>Cait             2P:     3b878696-f70f-4843-9f72-6c14ef3866c1</p>
+        <p>Sun Lihang1P:    129d7318-2c67-4c43-89cf-a24a7df0c10c</p>
+    </div>
+
+    <!-- 按钮容器 -->
+    <div class="buttons-container"></div>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top">↑</button>
+
+    <script>
+        // 初始化星空背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars-container');
+            const starCount = 200; // 星星数量
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                // 随机位置
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                // 随机大小
+                const size = Math.random() * 3 + 1;
+                // 随机亮度
+                const opacity = Math.random() * 0.8 + 0.2;
+                
+                star.style.cssText = `
+                    position: absolute;
+                    top: ${y}%;
+                    left: ${x}%;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background-color: white;
+                    border-radius: 50%;
+                    opacity: ${opacity};
+                    animation: twinkle ${Math.random() * 3 + 2}s infinite alternate;
+                `;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+    </script>
+</body>
+</html>
